@@ -104,4 +104,24 @@ def entrada()
   puts "Hola, #{nombre}"
 end
 
-entrada
+#entrada
+
+#14
+def notacion_hexadecimal(rgb_array)
+    result = "\#"
+    rgb_array.each {| c | result <<  "%02x" % c}
+    result.upcase
+end
+def notacion_entera(rgb_array)
+    mult = 0
+    result = 0
+    rgb_array.each do | c |
+          result += c * (256**mult)
+          mult=mult+1
+    end
+    result
+end
+
+puts notacion_hexadecimal([1,3,4])
+puts notacion_hexadecimal([0, 128, 255])
+puts notacion_entera([0, 128, 255])
