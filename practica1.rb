@@ -125,3 +125,17 @@ end
 puts notacion_hexadecimal([1,3,4])
 puts notacion_hexadecimal([0, 128, 255])
 puts notacion_entera([0, 128, 255])
+
+
+#15
+def ClaseMeta
+  def new(edad)
+      @edad = edad
+  end
+end
+
+cl = ClaseMeta.new
+cl.class.methods
+cl.methods
+cl.instance_variables
+cl.class.ancestors
