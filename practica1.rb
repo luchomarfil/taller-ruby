@@ -1,83 +1,106 @@
-def reemplazar(bloque)
-    bloque.gsub(/\{/,"do").gsub(/}/,"end")
+#3
+def reemplazar(aString)
+	aString.gsub("{", "do\n").gsub("}", "\nend")
 end
 
-def en_palabras(hora)
-  case hora.min
-  when 1..10
-    puts "Son las #{Time.now.hour} en punto"
-  when 11..20
-    puts "Son las #{Time.now.hour} y cuarto"
-  when 21..34
-    puts "Son las #{Time.now.hour} y media"
-  when 35..44
-    puts "Son las #{Time.now.hour+1} menos veinticinco"
-  when 45..55
-    puts "Son las #{Time.now.hour+1} menos cuarto"
-  when 56..59
-    puts "Casi las #{Time.now.hour}"
-  end
+
+#4
+def conversor(theTime)
+	case theTime.min
+	when 0..10
+		hora = "Son las #{theTime.hour} en punto"
+	when 11..20
+		hora =  "Son las #{theTime.hour} y cuarto"
+	when 21..34
+		hora =  "Son las #{theTime.hour} y media"	
+	when 35..44
+		hora = "Son las #{theTime.hour + 1} menos veinticinco"	
+	when 45..55
+		hora = "Son las #{theTime.hour + 1} menos cuarto"	
+	when 56..59
+		hora = "casi las #{theTime.hour + 1}"
+	end
 end
 
-def contar(frase,palabra)
-   frase.downcase.scan(/#{palabra}/).size
-end
-def contar_palabras(frase,palabra)
-  frase.downcase.scan(/\b#{palabra}\b/).size
+conversor(Time.now)
+
+
+#5
+def contar(frase, buscada)
+	frase.scan(/#{buscada}/).count
 end
 
-puts contar("lalala va La la la la casa la","la")
-puts contar_palabras("es La casa de La princesa la sofia ", "la")
-puts en_palabras(Time.now)
-puts reemplazar "6.times { puts \"hola\" }"
-#Ejercicio 7
+
+#6
+def contar_palabras(frase, buscada)
+	frase.scan(/\b#{buscada}\b/).count
+end
+
+
 #7.1
-puts "hola como va".reverse
-#7.2
-puts "   hola como va   ".strip
-#7.3
-"aa".each_codepoint {|c| print c, ' ' }
-#7.4
-'aeiou'.gsub(/[aeiou]/, 'a'=>4,'e'=>3,'i'=>'1','o'=>0,'u'=>6)
-#8
-#Map sobre el arreglo de simbolos, ejecuta el bloque de codigo
-#Ejecuta para cada elemento del arreglo y retorna un nuevo arreglo con
-#Los resultados de cada posicion
-[:upcase, :downcase, :capitalize, :swapcase].map do |meth|
- "TTPS Opcion Ruby".send(meth)
+def inverso(palabrita)
+	palabrita.reverse
 end
+
+#7.2
+def quitaEspacios(palabrita)
+	palabrita.gsub(/\s/, "")
+end
+
+
+#7.3
+def conversor_ascii(chars)
+	chars.gsub(/./){|s| s.ord.to_s + ' '} 
+end
+
+
+#7.4
+def vocales(unStr)
+	unStr.gsub(/[aeiou]/, 'a'=>4,'e'=>3,'i'=>'1','o'=>0,'u'=>6)
+end
+
+
+#8
+def ejercicio8
+	[:upcase, :downcase, :capitalize, :swapcase].map do |meth|
+	"TTPS Opción Ruby".send(meth)
+end
+
+
 #9
 def longitud(arreglo)
-  arreglo.map do | str |
-    str.size
-  end
+	arreglo.map { |e| e.size }
 end
-puts ""
-puts "Ejercicio 9"
-p longitud(['TTPS', 'Opcion', 'Ruby', 'Cursada 2015'])
+
 
 #10
-def a_ul(un_hash)
-   str = "<ul>"
-   un_hash.each do | c, v|
-      str += "<li>#{c}:#{v}</li>"
-   end
-   str += "</ul>"
+def a_ul(hashloco)
+	"<ul>"<< \
+	hashloco.inject("") do |str,(clave, valor)|
+		str<<"<li>#{clave}: #{valor}</li>"
+	end \
+	<<"</ul>"
 end
 
-p a_ul({perros:1,gatos:2})
 
 #11
+def rot13(unStr)
+	unStr.gsub(/[a-zA-Z]/) {|car| (car.ord + 13).chr}
+end
+
+
+#12
 def mapa_rot(cantidad)
   #frase.gsub(/[a-zA-Z]/) {|s| (s.ord + 13).chr}
   mapeo = {}
   ("A".."Z").each do |s|
-     relativo = (s.ord + cantidad)
-     if(relativo.ord>"Z".ord)
-         relativo = "A".ord + (relativo.ord - "Z".ord) - 1
-     end
+    relativo = if relativo.ord>"Z".ord 
+        "A".ord + (relativo.ord - "Z".ord) - 1
+      else
+        (s.ord + cantidad)
+      end
      mapeo[s.downcase] = relativo.chr.downcase
-     mapeo[s.upcase] = relativo.chr.upcase
+     mapeo[s] = relativo.chr
   end
   mapeo
 end
@@ -97,6 +120,7 @@ puts rot13("Bienvenidos a la cursada 2015 de TTPS Opcion Ruby")
 puts rot("Hola como va",0)
 puts rot("Hola como va",1)
 
+
 #13
 def entrada()
   puts "Por favor, ingresa tu nombre"
@@ -104,7 +128,6 @@ def entrada()
   puts "Hola, #{nombre}"
 end
 
-#entrada
 
 #14
 def notacion_hexadecimal(rgb_array)
@@ -112,6 +135,7 @@ def notacion_hexadecimal(rgb_array)
     rgb_array.each {| c | result <<  "%02x" % c}
     result.upcase
 end
+
 def notacion_entera(rgb_array)
     mult = 0
     result = 0
@@ -121,10 +145,6 @@ def notacion_entera(rgb_array)
     end
     result
 end
-
-puts notacion_hexadecimal([1,3,4])
-puts notacion_hexadecimal([0, 128, 255])
-puts notacion_entera([0, 128, 255])
 
 
 #15
@@ -139,3 +159,13 @@ cl.class.methods
 cl.methods
 cl.instance_variables
 cl.class.ancestors
+
+#16
+
+
+
+
+
+
+
+
