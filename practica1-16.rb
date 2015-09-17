@@ -1,6 +1,6 @@
 #Ejercicio numero 16
 def suma(tope)
-  (1..tope).inject(0) do |sum,v|
+  (1..tope).select {|a| a % 3 == 0 || a % 5 == 0} | .inject(0) do |sum,v|
       sum + v
   end
 end
