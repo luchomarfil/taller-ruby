@@ -1,10 +1,12 @@
 # EJERCICIO 1
 #1 se le aplica al arreglo el metodo sort
+puts "### EJERCICIO 1 ###"
 def ordenar_arreglo(arr)
     arr.sort
 end
-
+p ordenar_arreglo([2,3,5,21,7,2,75,2,68,42,3])
 # EJERCICIO 2
+puts "### EJERCICIO 2 ###"
 # *valores es un parametro splat.
 #Se lo puede usar dentro de la funcino sin el asterisco, y representa el uso
 #de multiples valores con un solo nombre de parametro
@@ -16,6 +18,7 @@ end
 p ordenar(14,3,2,3,43,2,64,2)
 
 # EJERCICIO 3
+puts "### EJERCICIO 3 ###"
 entrada = [10, 9, 1, 2, 3, 5, 7, 8]
 # Dada `entrada', invocar a #ordenar utilizando sus valores para ordenarlos
 # Anteponiendo un * al atributo pasado al metodo, se logra explotar el arreglo
@@ -24,6 +27,7 @@ entrada = [10, 9, 1, 2, 3, 5, 7, 8]
 p ordenar(*entrada,12,999999)
 
 # EJERCICIO 4
+puts "### EJERCICIO 4 ###"
 def longitud(*params)
   params.each do |variable|
       puts "#{variable.to_s} --> #{variable.to_s.size}"
@@ -40,6 +44,7 @@ longitud(9, Time.now, 'Hola', {un: 'hash'}, :ruby)
 
 
 # EJERCICIO 5
+puts "### EJERCICIO 5 ###"
 #Con el igual, proporcioanamos un valor por defecto para el parametro fecha
 #Ademas en la implementacion, se hace la diferencia entre fecha y Time.now, eso devuelve segundos
 #Se lo pasa a integer y se toma el valor absoluto para que no devuelva valor negativo
@@ -61,6 +66,7 @@ puts cuanto_falta?
 # la coleccion
 
 #EJERCICIO 7
+puts "### EJERCICIO 7 ###"
 puts "JUEGO EJERCICIO 6 corregido --> EJERCICIO7"
 
 # Tira un dado virtual de 6 caras
