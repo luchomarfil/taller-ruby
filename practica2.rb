@@ -102,3 +102,143 @@ until finalizado
     break if finalizado
   end
 end
+
+
+
+
+
+puts "PARTE DOS - CLASES"
+puts "EJERCICIO 8"
+class Taller
+  def probar(objeto)
+    objeto.arrancar
+  end
+end
+
+class Vehiculo
+
+    attr_accessor :llave_puesta
+    def initialize (llave_puesta:)
+      @llave_puesta = llave_puesta
+    end
+
+    def arrancar
+       llave_puesta
+    end
+
+end
+
+class Auto < Vehiculo
+    attr_accessor :freno_mano, :punto_muerto
+
+    def initialize (llave_puesta:,freno_mano:,punto_muerto:)
+        super(llave_puesta:llave_puesta)
+        @freno_mano = freno_mano
+        @punto_muerto = punto_muerto
+    end
+
+    def arrancar
+      super && !freno_mano && punto_muerto
+    end
+
+end
+
+class Moto < Vehiculo
+    attr_accessor :patada
+    def initialize (llave_puesta:,patada:)
+        super llave_puesta:llave_puesta
+        @patada = patada
+    end
+    def arrancar
+      patada
+    end
+
+end
+
+class Lancha < Vehiculo
+
+end
+
+
+puts Taller.new.probar(Lancha.new(llave_puesta:true))
+#Auto no arranca
+puts Taller.new.probar(Auto.new(llave_puesta:true,punto_muerto:true,freno_mano:true))
+
+puts "Si se podria, el taller podria probar una motosierra. Basandose en el concepto de duck typing. No se requiere de
+Una jerarquia para poder entender un mensaje. Cada objeto responde al mensaje de acuerdo a como sepa hacerlo"
+
+puts "EJERCICIO 9"
+puts <<eos
+Include, lo que hace es agregar todos los metodos definidos dentro de un modulo como metodos de instancia
+de la clase que esta incluyendo el modulo
+Extends, en cambio lo que hace es extender el comportamiento de la clase, agregando todos los metodos del modulo
+como metodos de clase
+eos
+
+puts "EJERCICIO 10"
+module Reverso
+  def di_tcejbo
+    self.object_id.to_s.reverse
+  end
+  def ssalc
+    self.class.name.reverse
+  end
+end
+
+class String
+  include Reverso
+
+end
+str = "hola como va"
+puts str.class.name + "  " + str.ssalc
+puts str.object_id.to_s + "   " + str.di_tcejbo
+
+
+puts "EJERCICIO 11"
+puts <<eos
+11. Implementá el Mixin `Countable` que te permita hacer que cualquier clase cuente la cantidad de veces que los
+    métodos de instancia definidos en ella es invocado. Utilizalo en distintas clases, tanto desarrolladas por vos como
+    clases de la librería standard de Ruby, y chequeá los resultados. El Mixin debe tener los siguientes métodos:
+  1. `count_invocations_of(sym)`: método de clase que al invocarse realiza las tareas necesarias para contabilizar las
+     invocaciones al método de instancia cuyo nombre es `sym` (un símbolo).
+  2. `invoked?(sym)`: método de instancia que devuelve un valor booleano indicando si el método llamado `sym` fue
+     invocado al menos una vez en la instancia receptora.
+  3. `invoked(sym)`: método de instancia que devuelve la cantidad de veces que el método identificado por `sym` fue
+     invocado en la instancia receptora.
+eos
+
+module Foo
+
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+
+  def foo_method
+    puts "Enviado123123"
+    self.class.sym    
+  end
+
+  module ClassMethods
+    attr_accessor :sym
+    def count_invocations_of(sym)
+      @sym = sym
+      class_eval do
+        alias_method @sym, :foo_method
+        alias_method :foo_method, @sym
+      end
+    end
+  end
+
+end
+
+class Bebida
+  include Foo
+  def hola()
+    print "hola como va" +  eqwrewrawe + 3
+    raise "error"
+  end
+
+  count_invocations_of :hola
+end
+
+Bebida.new.hola
