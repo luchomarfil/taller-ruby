@@ -215,7 +215,7 @@ module Foo
 
   def foo_method
     puts "Enviado123123"
-    self.class.sym    
+    self.class.sym
   end
 
   module ClassMethods
@@ -241,4 +241,164 @@ class Bebida
   count_invocations_of :hola
 end
 
-Bebida.new.hola
+#Bebida.new.hola
+
+puts "EJERCICIO 12"
+# class GenericFactory
+#   def self.create(**args)
+#     new(**args)
+#   end
+#
+#   def initialize(**args)
+#     raise NotImplementedError
+#   end
+# end
+#
+# class Computadora < GenericFactory
+#    attr_accessor :memoria, :cpu, :peso
+#
+#    def initialize(**args)
+#       p "args #{args}"
+#    end
+# end
+
+# Computadora.create a:10, b:"dos"
+# Computadora.create
+
+puts "EJERCICIO 13"
+puts "Modificaciones, para que un modulo pueda agregar metodos de clases sobre la clase en la que es incluido se puede optar por dos opciones"
+puts "La primera usar el self.include y extender mediante un modulo interno Class methods"
+puts "La segunda es usar el extend en lugar del include y sacar las referencias a self en los metodos. Porque todos los metodos que se agregan"
+puts "con un extend, pasan a ser automaticamente de clase"
+puts "La segunda solucion tiene la desventaja de agregar todos los metodos como de clase, y en este caso, el initialize no deberia ser de clase"
+puts "mientras que create si tiene que ser de clase."
+module GenericFactoryConInclude
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+
+  def initialize(**args)
+    raise NotImplementedError
+  end
+
+  module ClassMethods
+    def create(**args)
+      new(**args)
+    end
+  end
+
+end
+
+class Computadora
+  include GenericFactoryConInclude
+   attr_accessor :memoria, :cpu, :peso
+
+   def initialize(**args)
+      p "args #{args}"
+   end
+end
+
+
+module GenericFactoryConExtend
+  def create(**args)
+    new(**args)
+  end
+
+  def initialize(**args)
+    raise NotImplementedError
+  end
+end
+
+
+class Monitor
+  extend GenericFactoryConExtend
+  def initialize(**args)
+     p "args #{args}"
+  end
+end
+
+Computadora.create a:10, b:"dos"
+Computadora.create
+Monitor.create {}
+
+puts "EJERCICIO 14"
+module Oposite
+  def opposite
+    !self
+  end
+end
+
+class TrueClass
+  include Oposite
+end
+class FalseClass
+  include Oposite
+end
+puts <<eos
+Se implementa opposite incluyendo un modulo oposite que agrega el motodo oposite que invierte el self
+eos
+puts "false.opposite=>#{false.opposite}"
+puts "false.opposite=> #{true.opposite.opposite}"
+
+puts "EJERCICIO 15"
+puts <<eos
+15. Analizá el script Ruby presentado a continuación e indicá:
+
+  1. ¿Qué imprimen cada una de las siguientes sentencias? ¿De dónde está obteniendo el valor?
+     1. `puts A.value` => Imprime la variable de clase value en la clase A
+     2. `puts A::B.value` => Imprime la variable de clase value en la clase B del Modulo B
+     3. `puts C::D.value` => Imprime la variable de clase value en la clase D del Modulo C
+     4. `puts C::E.value` => Imprime la variable de clase value en la clase E del Modulo C
+     5. `puts F.value` => Imprime la variable de clase value en la clase F
+  2. ¿Qué pasaría si ejecutases las siguientes sentencias? ¿Por qué?
+     1. `puts A::value` => Imprime la variable de clase del modulo A
+     2. `puts A.new.value` => Imprime el resultado de la invocacion del metodo de instancia value
+                              sobre un objeto de la clase A
+     3. `puts B.value`
+     4. `puts D.value`
+     5. `puts C.value`
+eos
+
+puts "PARTE DE BLOQUES"
+puts "EJERCICIO 16"
+def da_nil?
+  yield == nil
+end
+
+puts da_nil? {}
+puts da_nil? {"Algo distinto de nil"}
+
+puts "EJERCICIO 17"
+def procesar_hash(hash,proce)
+  nuevo_hash = {}
+  hash.each do |c,v|
+    puts "C=#{c},V=#{v}"
+    nuevo_hash[v] = proce.call(c)
+  end
+  nuevo_hash
+end
+
+hash = { 'clave' => 1, :otra_clave => 'valor' }
+puts procesar_hash(hash, ->(x) { x.to_s.upcase })
+
+puts "EJERCICIO 18"
+def parametros(*args,&b)
+  begin
+    puts "ANTES"
+    b.call(args)
+    puts "DESPUES"
+    return :ok
+  rescue RuntimeError
+    puts "Algo salió mal..."
+    return :rt
+  rescue NoMethodError => e
+    puts "No encontre un metodo: #{e.message}"
+    return :nm
+  rescue
+    puts "¡No se que hacer!"
+    raise
+  end
+
+end
+
+parametros 10,1,3 do |a,b| puts a*b+dd end
