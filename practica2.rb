@@ -266,12 +266,15 @@ puts "EJERCICIO 12"
 # Computadora.create
 
 puts "EJERCICIO 13"
-puts "Modificaciones, para que un modulo pueda agregar metodos de clases sobre la clase en la que es incluido se puede optar por dos opciones"
-puts "La primera usar el self.include y extender mediante un modulo interno Class methods"
-puts "La segunda es usar el extend en lugar del include y sacar las referencias a self en los metodos. Porque todos los metodos que se agregan"
-puts "con un extend, pasan a ser automaticamente de clase"
-puts "La segunda solucion tiene la desventaja de agregar todos los metodos como de clase, y en este caso, el initialize no deberia ser de clase"
-puts "mientras que create si tiene que ser de clase."
+puts <<eos 
+Modificaciones, para que un modulo pueda agregar metodos de clases sobre la clase en la que es incluido 
+se puede optar por dos opciones
+La primera usar el self.include y extender mediante un modulo interno Class methods
+La segunda es usar el extend en lugar del include y sacar las referencias a self en los metodos. Porque todos 
+los metodos que se agregan con un extend, pasan a ser automaticamente de clase.
+La segunda solucion tiene la desventaja de agregar todos los metodos como de clase, y en este caso, el initialize
+no deberia ser de clase, mientras que create si tiene que ser de clase
+eos
 module GenericFactoryConInclude
   def self.included(base)
     base.extend(ClassMethods)
