@@ -1,11 +1,15 @@
-# EJERCICIO 1
+#####################################################1##################################################
 #1 se le aplica al arreglo el metodo sort
 puts "### EJERCICIO 1 ###"
 def ordenar_arreglo(arr)
     arr.sort
 end
 p ordenar_arreglo([2,3,5,21,7,2,75,2,68,42,3])
-# EJERCICIO 2
+
+
+
+#####################################################2##################################################
+
 puts "### EJERCICIO 2 ###"
 # *valores es un parametro splat.
 #Se lo puede usar dentro de la funcino sin el asterisco, y representa el uso
@@ -17,7 +21,9 @@ end
 #Internamente el metodo ordenar va a recibir un arreglo de objetos
 p ordenar(14,3,2,3,43,2,64,2)
 
-# EJERCICIO 3
+
+
+#####################################################3##################################################
 puts "### EJERCICIO 3 ###"
 entrada = [10, 9, 1, 2, 3, 5, 7, 8]
 # Dada `entrada', invocar a #ordenar utilizando sus valores para ordenarlos
@@ -26,7 +32,7 @@ entrada = [10, 9, 1, 2, 3, 5, 7, 8]
 # Dos lineas parametros mas
 p ordenar(*entrada,12,999999)
 
-# EJERCICIO 4
+#####################################################4##################################################
 puts "### EJERCICIO 4 ###"
 def longitud(*params)
   params.each do |variable|
@@ -43,7 +49,8 @@ longitud(9, Time.now, 'Hola', {un: 'hash'}, :ruby)
 # ruby -->
 
 
-# EJERCICIO 5
+
+#####################################################5##################################################
 puts "### EJERCICIO 5 ###"
 #Con el igual, proporcioanamos un valor por defecto para el parametro fecha
 #Ademas en la implementacion, se hace la diferencia entre fecha y Time.now, eso devuelve segundos
@@ -55,7 +62,7 @@ end
 puts cuanto_falta?
 
 
-#EJERCICIO 6.
+#####################################################6##################################################
 # Uno de los errores era haber declarado el hash con simbolos, de esa forma dentro del metodo mover_ficha
 # no se podia encotrar la posicion en el tablero de cada jugador.
 # El segundo problema era que el metodo mover_ficha, por el else, devolvia en lugar de false
@@ -65,7 +72,9 @@ puts cuanto_falta?
 # El cuarto problema es que si un jugador ganaba, el each continuaba ejecutandose hasta el ultimo elemento de
 # la coleccion
 
-#EJERCICIO 7
+
+
+#####################################################7##################################################
 puts "### EJERCICIO 7 ###"
 puts "JUEGO EJERCICIO 6 corregido --> EJERCICIO7"
 
@@ -104,9 +113,8 @@ until finalizado
 end
 
 
-
-
-
+################################################PARTE DOS###############################################
+#####################################################8##################################################
 puts "PARTE DOS - CLASES"
 puts "EJERCICIO 8"
 class Taller
@@ -167,6 +175,9 @@ puts Taller.new.probar(Auto.new(llave_puesta:true,punto_muerto:true,freno_mano:t
 puts "Si se podria, el taller podria probar una motosierra. Basandose en el concepto de duck typing. No se requiere de
 Una jerarquia para poder entender un mensaje. Cada objeto responde al mensaje de acuerdo a como sepa hacerlo"
 
+
+
+#####################################################9##################################################
 puts "EJERCICIO 9"
 puts <<eos
 Include, lo que hace es agregar todos los metodos definidos dentro de un modulo como metodos de instancia
@@ -175,6 +186,9 @@ Extends, en cambio lo que hace es extender el comportamiento de la clase, agrega
 como metodos de clase
 eos
 
+
+
+#####################################################10##################################################
 puts "EJERCICIO 10"
 module Reverso
   def di_tcejbo
@@ -194,6 +208,8 @@ puts str.class.name + "  " + str.ssalc
 puts str.object_id.to_s + "   " + str.di_tcejbo
 
 
+
+#####################################################11##################################################
 puts "EJERCICIO 11"
 puts <<eos
 11. Implementá el Mixin `Countable` que te permita hacer que cualquier clase cuente la cantidad de veces que los
@@ -243,6 +259,9 @@ end
 
 #Bebida.new.hola
 
+
+
+#####################################################12##################################################
 puts "EJERCICIO 12"
 # class GenericFactory
 #   def self.create(**args)
@@ -265,6 +284,9 @@ puts "EJERCICIO 12"
 # Computadora.create a:10, b:"dos"
 # Computadora.create
 
+
+
+#####################################################13##################################################
 puts "EJERCICIO 13"
 puts <<eos 
 Modificaciones, para que un modulo pueda agregar metodos de clases sobre la clase en la que es incluido 
@@ -324,6 +346,9 @@ Computadora.create a:10, b:"dos"
 Computadora.create
 Monitor.create {}
 
+
+
+#####################################################14##################################################
 puts "EJERCICIO 14"
 module Oposite
   def opposite
@@ -343,6 +368,9 @@ eos
 puts "false.opposite=>#{false.opposite}"
 puts "false.opposite=> #{true.opposite.opposite}"
 
+
+
+#####################################################15##################################################
 puts "EJERCICIO 15"
 puts <<eos
 15. Analizá el script Ruby presentado a continuación e indicá:
@@ -362,6 +390,10 @@ puts <<eos
      5. `puts C.value`
 eos
 
+
+
+##################################################BLOQUES################################################
+#####################################################16##################################################
 puts "PARTE DE BLOQUES"
 puts "EJERCICIO 16"
 def da_nil?
@@ -371,6 +403,9 @@ end
 puts da_nil? {}
 puts da_nil? {"Algo distinto de nil"}
 
+
+
+#####################################################17##################################################
 puts "EJERCICIO 17"
 def procesar_hash(hash,proce)
   nuevo_hash = {}
@@ -384,6 +419,9 @@ end
 hash = { 'clave' => 1, :otra_clave => 'valor' }
 puts procesar_hash(hash, ->(x) { x.to_s.upcase })
 
+
+
+#####################################################18##################################################
 puts "EJERCICIO 18"
 def parametros(*args,&b)
   begin
