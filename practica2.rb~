@@ -453,7 +453,7 @@ puts "EJERCICIO 18"
 def parametros2(*args)
   begin
     puts "ANTES"
-    yield args if block_given? #controla que se haya pasado el bloque
+    yield args if block_given?
     puts "DESPUES"
     return :ok
   rescue RuntimeError
