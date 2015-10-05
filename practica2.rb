@@ -470,3 +470,44 @@ def parametros2(*args)
 end
 
 parametros 10,1,3 do |a,b| puts a*b+dd end
+
+#########################################    ENUMERADORES   #################################################
+puts "ENUMERADORES"
+puts "EJERCICIO 1" 
+puts "Ya implementado en la practica 1"
+puts "EJERCICIO 2"
+puts <<eos
+	¿Qué son los lazy enumerators? ¿Qué ventajas les ves con respecto al uso de los enumeradores que no son lazy?
+	La ventaja principal es la de evitar loops infinitos cuando se trabajo con conjuntos grandes de datos. 
+	Por ejemplo un collect, o un select sobre un Enumerador no lazy, lleva a un loop infinito. En tanto con un enumerador
+	lazy, se puede realizar operaciones de colleccion sobre el enumerador. 
+
+	El enumerador lazy ejecuta el bloque de codigo para cada elemento, a diferencia del otro enumerador, que primero obtiene
+	la coleccion de elementos y luego realiza el each sobre cada uno de ellos. Por eso se rompe el enumerador NO lazy sobre
+ 	conjuntos infinitos
+eos
+
+
+puts "EJERCICIO 3"
+
+
+class Array
+	def randomly
+		if block_given? 
+			self.shuffle.each {|elem| yield elem}
+		else
+			self.shuffle.each
+		end
+	end
+end
+
+a = (1..3).to_a
+p "uno"
+p a.randomly { |s| puts "Elemento #{s}"}
+p "dos"
+p a.randomly
+
+
+
+
+
