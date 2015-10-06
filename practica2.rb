@@ -57,7 +57,7 @@ puts "### EJERCICIO 5 ###"
 #Se lo pasa a integer y se toma el valor absoluto para que no devuelva valor negativo
 def cuanto_falta?(fecha=nil)
 	#Se puede agregar un bloque y usar una sola vez Time.new
-	
+
 	fecha = Time.new(Time.new.year,Time.new.month,Time.new.day,23,59,59) if fecha #alternativa 1
 	fecha ||= Time.new(Time.new.year,Time.new.month,Time.new.day,23,59,59)  #alternativa 2
 	((fecha - Time.now  ) / 60).to_i.abs
@@ -240,9 +240,9 @@ module Countable
 
     def count_invocations_of(sym)
 		 @@contador[sym]=0
-		 new_method = "incrementar_#{sym}"		 
-		 define_method(new_method) do 
-		 	@@contador[sym]+=1		 	 
+		 new_method = "incrementar_#{sym}"
+		 define_method(new_method) do
+		 	@@contador[sym]+=1
 		 	send sym
 		 end
 		 alias_method sym, new_method
@@ -292,11 +292,11 @@ puts "EJERCICIO 12"
 
 #####################################################13##################################################
 puts "EJERCICIO 13"
-puts <<eos 
-Modificaciones, para que un modulo pueda agregar metodos de clases sobre la clase en la que es incluido 
+puts <<eos
+Modificaciones, para que un modulo pueda agregar metodos de clases sobre la clase en la que es incluido
 se puede optar por dos opciones
 La primera usar el self.include y extender mediante un modulo interno Class methods
-La segunda es usar el extend en lugar del include y sacar las referencias a self en los metodos. Porque todos 
+La segunda es usar el extend en lugar del include y sacar las referencias a self en los metodos. Porque todos
 los metodos que se agregan con un extend, pasan a ser automaticamente de clase.
 La segunda solucion tiene la desventaja de agregar todos los metodos como de clase, y en este caso, el initialize
 no deberia ser de clase, mientras que create si tiene que ser de clase
@@ -473,14 +473,14 @@ parametros 10,1,3 do |a,b| puts a*b+dd end
 
 #########################################    ENUMERADORES   #################################################
 puts "ENUMERADORES"
-puts "EJERCICIO 1" 
+puts "EJERCICIO 1"
 puts "Ya implementado en la practica 1"
 puts "EJERCICIO 2"
 puts <<eos
 	¿Qué son los lazy enumerators? ¿Qué ventajas les ves con respecto al uso de los enumeradores que no son lazy?
-	La ventaja principal es la de evitar loops infinitos cuando se trabajo con conjuntos grandes de datos. 
+	La ventaja principal es la de evitar loops infinitos cuando se trabajo con conjuntos grandes de datos.
 	Por ejemplo un collect, o un select sobre un Enumerador no lazy, lleva a un loop infinito. En tanto con un enumerador
-	lazy, se puede realizar operaciones de colleccion sobre el enumerador. 
+	lazy, se puede realizar operaciones de colleccion sobre el enumerador.
 
 	El enumerador lazy ejecuta el bloque de codigo para cada elemento, a diferencia del otro enumerador, que primero obtiene
 	la coleccion de elementos y luego realiza el each sobre cada uno de ellos. Por eso se rompe el enumerador NO lazy sobre
@@ -493,7 +493,7 @@ puts "EJERCICIO 3"
 
 class Array
 	def randomly
-		if block_given? 
+		if block_given?
 			self.shuffle.each {|elem| yield elem}
 		else
 			self.shuffle.each
@@ -507,7 +507,6 @@ p a.randomly { |s| puts "Elemento #{s}"}
 p "dos"
 p a.randomly
 
-
-
-
-
+##################################                4                 #####################################
+puts "EJERCICIO  4"
+http://railsware.com/blog/2012/03/13/ruby-2-0-enumerablelazy/
