@@ -95,96 +95,52 @@ opcion_4 => El rescue al encontrarse dentro del {}, ante una excepcion, el map s
 
 manteca
 
-puts "EJERCICIO 6"
-
-=begin
-    cantidad = 0
-    minimo = 1
-    while cantidad < minimo
-     puts "¿Cuál es la cantidad de números que ingresará? Debe ser al menos #{minimo}"
-     begin
-       cantidad = Kernel.gets
-       raise if cantidad.match(/^\d+$/).nil?
-       cantidad = cantidad.to_i
-     rescue
-        puts 'Debe ingresar un numero'
-        cantidad = 0
-     end
-    end
-
-    # Luego se almacenan los números
-    numeros = 1.upto(cantidad).map do
-     puts 'Ingrese un número'
-     begin
-       numero = Kernel.gets
-       raise if numero.match(/^\d+$/).nil?
-       numero = numero.to_i
-     rescue
-        puts 'Debe ingresar un numero'
-        retry
-     end
-    end
-
-    # Y finalmente se imprime cada número dividido por su número entero inmediato anterior
-    resultado = numeros.map do |x|
-      begin
-        x / (x - 1)
-      rescue ZeroDivisionError => e
-        while x == 1 do
-         puts "Ingrese un numero distinto de #{x}"
-         x = gets.to_i
-        end
-        retry
-      end
-    end
-    puts 'El resultado es: %s' % resultado.join(', ')
-=end
-
-puts "EJERCICIO 7"
-class FormatoIncorrectoError < StandardError
+puts "EJERCICIO 6 y 7 en practica3_6y7.rb"
+#######################    8    ##########################
+puts "EJERCICIO 8"
+puts <<explicacion
+      Parte 1
+        Flujo de impresion:
+        * "Entrando a fun1" => porque se invoca desde el script principal
+        * "Entrando a fun2" => porque se invoca desde fun1
+        * "Entrando a fun3" => porque se invoca desde fun2
+        * "Tratando excepción provocada en tiempo de ejecución" => porque se lanza desde fun3 y se captura en fun3
+        * "Ejecutando ensure de fun3" => porque asi como se captura RuntimeError Tambien
+                                         se determina un comportamiento pase lo que pase, eso es lo que asegura el
+                                         ensure
+        * "Manejador de excepciones de fun1" => porque en fun 2 hay una division por cero
+                                                que no esta manejada
+        * "Ejecutando ensure de fun1" => porque asi como se captura RuntimeError, la clausula ensure define un comportamiento
+                                         pase lo que pase.
+        * "Manejador de excepciones de Main" => porque en el manejador de fun1 se hace un raise nuevamente de la excepcion
+                                                que se esta manejando
+        * "Correcion de x" => porque es el codigo del manejador de la excepcion que viene desde fun1
+        * "Entrando a fun1" => porque se invoa desde el main con el retry nuevamente
+        * "Entrando a fun2" => porque se invoca desde fun1
+        * "Entrando a fun3" => porque se invoca desde fun2
+        * "Tratando excepcion provocada en tiempo de ejecucion" => porque se levanta desde fun3 y se maneja ahi
+        * "Ejecutando ensure de fun3" => porque se ejecuta la clausula ensure en fun3 que asegura que un codigo
+                                         se ejecute pase lo que pase
+        * "Terminando fun2" => porque la division ahora no arroja errores
+        * "Ejecutando ensure de fun1" => porque si bien no hubo excepciones eso es lo que asegura la clausula ensure
+        * "Puts salida" => porque al no haber excepciones es la ultima linea del script
+    Parte 2
+        Si se modifica el orden de los manejadores de excepciones, va a suceder que la excepcion va a ser tratada
+        por el primer manejador que pueda manejarla. Se va a imprimir Tratando una excepcion cualquiera
+    Parte 3
+        La palabra retry la funcion que cumple es volver a ejecutar el begin que contiene el bloque de instrucciones
+        alcanzados por el rescue. Si corremos la inicializacion de x = 0 dentro del bloque begin, sucede que va a encontrarse
+        en un bucle infinito, dado que la solucion de lleva a x = 1 se ve afectada y contradecida con el x = 0
+explicacion
 
 
-end
-
-cantidad = 0
-minimo = 1
-while cantidad < minimo
- puts "¿Cuál es la cantidad de números que ingresará? Debe ser al menos #{minimo}"
- begin
-   cantidad = Kernel.gets
-   raise FormatoIncorrectoError if cantidad.match(/^\d+$/).nil?
-   cantidad = cantidad.to_i
- rescue FormatoIncorrectoError => e
-    puts "eror del tipo #{e.class}"
-    puts 'Debe ingresar un numero'
-    cantidad = 0
- end
-end
-
-# Luego se almacenan los números
-numeros = 1.upto(cantidad).map do
- puts 'Ingrese un número'
- begin
-   numero = Kernel.gets
-   raise FormatoIncorrectoError if numero.match(/^\d+$/).nil?
-   numero = numero.to_i
- rescue FormatoIncorrectoError => e
-    puts "eror del tipo #{e.class}"
-    puts 'Debe ingresar un numero'
-    retry
- end
-end
-
-# Y finalmente se imprime cada número dividido por su número entero inmediato anterior
-resultado = numeros.map do |x|
-  begin
-    x / (x - 1)
-  rescue ZeroDivisionError => e
-    while x == 1 do
-     puts "Ingrese un numero distinto de #{x}"
-     x = gets.to_i
-    end
-    retry
-  end
-end
-puts 'El resultado es: %s' % resultado.join(', ')
+puts "PARTE TESTING"
+puts "EJERCICIO 1"
+puts <<ex
+¿En qué consiste la metodología TDD? ¿En qué se diferencia con la forma tradicional de escribir código y luego realizar los tests?
+La metodología TDD determina que lo primero que debe escribirse son los tests que cubren el funcionamiento esperado de la aplicacion.
+En base a eso, el primer objetivo es que los test fallen y se va desarrollando la funcionalidad que hace pasar los tests. Esto
+tiene como dos principales ventajas, que no se escribe codigo que no se va a necesitar, y que toda la funcionalidad critica del sistema
+va a estar cubierta por los tests. Ademas el codigo generado queda desarticulado de tal manera que no existe una porcion de código que
+resuelva todo, sino que existen pequeñas partes que solucionan cierta funcionalidad del sistema.
+ex
