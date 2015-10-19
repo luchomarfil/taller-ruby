@@ -16,11 +16,19 @@ def en_palabras(theTime)
 end
 
 def contar(frase, buscada)
-	frase.scan(/#{buscada}/).count
+	if (buscada == "")
+		0
+	else
+		frase.downcase.scan(/#{buscada.downcase}/).count
+	end
 end
 
 def contar_palabras(frase, buscada)
-	frase.scan(/\b#{buscada}\b/).count
+	if (buscada == "")
+		0
+	else	
+		frase.scan(/\b#{buscada}\b/).count
+	end
 end
 
 def longitud(arreglo)

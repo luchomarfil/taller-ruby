@@ -17,8 +17,9 @@ class Roman
         roman = ""
         for code, factor in FACTORS
             count, value = value.divmod(factor)
-            roman << code unless count.zero?
+            roman << (code * count)
+            # cambiamos: unless count.zero?
         end
-        roman
-    end
+    roman
+end
 end
