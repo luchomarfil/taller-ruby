@@ -1,0 +1,20 @@
+GIT
+  remote: https://github.com/sparklemotion/nokogiri
+  revision: 8f3de6d88d0da11fb62a45daa61b85ce71b4af59
+  specs:
+    nokogiri (1.6.6)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorputs (0.2.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorputs
+  nokogiri (= 1.6.6)!
+
+BUNDLED WITH
+   1.10.6
