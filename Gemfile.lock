@@ -1,12 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    colorputs (0.2.3)
     minitest (5.8.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorputs
   minitest
 
 BUNDLED WITH
