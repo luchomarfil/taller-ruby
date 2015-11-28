@@ -60,3 +60,20 @@ Most of the version specifiers, like >= 1.0, are self-explanatory. The specifier
 
 6 - bundle install => Instala las dependencias especificadas en Gemfile, a la version especificada
     bundle update  => Actualiza las dependencias instaladas a la ultima version especificada segun Gemfile
+
+
+Sinatra
+-------
+
+1- Rack provee una interface minima, modular y adaptable para desarrollar aplciaciones webs en ruby. Provee una manera estandar de manejar request y responses HTTP. Es utilizada por frameworks, webservers y middlewares.
+Rack especifica que un request se debe poder manejar con una simple invocacion a un metodo call. Y ademas que la respuesta provista por ese metodo call, debe constar de tres partes
+1. El status code
+2. Un hash de headers
+3. Un body response
+
+
+
+3- Quiere decir que al ser una DSL agrega sintaxis propia con el propósito de facilitar el desarrollo de aplicaciones web. Con Sinatra es fácil especificar una api para un servidor web y como debe compartarse para cada metodo distinto del protocolo HTTP. Ademas agrega la posibilidad de parsear los requests, o de redirigir dependiendo de expresiones regulares presentes en el request. Tambien puede discriminar de acuerdo al tipo de contenido que acepta el cliente que realiza el request
+DSL => Domain specific lenguaje. ES un lenguaje propio basado en Ruby que agrega sintaxis propia para facilitar el desarrollo de tareas especificas. Gemfile tambien define un DSL propio
+
+4- Preguntar si se podria haber realizado como el probability del ejemplo de las ppts
