@@ -1,6 +1,7 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
+<<<<<<< HEAD
 # gem "rails"
 
 # A sample Gemfile
@@ -8,3 +9,7 @@ source "https://rubygems.org"
 
 gem 'sinatra'
 gem 'rerun'
+=======
+gem "sinatra"
+gem "shotgun"
+>>>>>>> a818455bd1b1dca23f70659a4c956ff4d07b05d4
