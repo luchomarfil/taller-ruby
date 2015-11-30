@@ -1,6 +1,6 @@
 require 'bundler'
 Bundler.require
- 
+
 get '/' do
 	"* /mcm/a/b => muestra el minimo comun multiplo entre a b
 	 <br>
@@ -33,7 +33,7 @@ end
 
 get '/even/*' do
 	spl = params[:splat][0].split("/").map{|a| a.to_i}.select{|elem| elem.even?}
-	"presenta la cantidad de numeros pares => #{spl}"
+	"presenta la cantidad de numeros pares => #{spl.size}"
 end
 
 post '/random' do
