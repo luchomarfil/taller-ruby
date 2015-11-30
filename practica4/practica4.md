@@ -14,7 +14,7 @@ Gems   => Gestor de paquetes para instalar gemas en el sistema
 Bundle => Gestor para manejar, instalar y actualizar las dependencias de una aplicacion mediante un archivo Gemfile
 
 Las diferencias son:
-1- Gems es parte de Ruby, es su gestor de gemas, en tanto Bundle es una gema que debe instalarse mediante el comando gem.
+1- Gems es de uso estandar en Ruby, es su gestor de gemas, en tanto Bundle es una gema que debe instalarse mediante el comando gem.
 Ambos permiten instalar gemas, pero Bundle haciendo uso de un archivo realiza la instalación de una manera mas ágil, cómoda, más práctica.
 Ademas Bundle permite administrar las versiones de cada gema, que va a utilizar la aplicacion. Ademas se pueden manejar diversos entornos, como puede ser :test, :development, y cada uno con su configuración específica.
 Como objetivo base hacen lo mismo: instalar dependencias.

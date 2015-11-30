@@ -32,7 +32,7 @@ get '/sum/*' do
 end
 
 get '/even/*' do
-	spl = params[:splat][0].split("/").map{|a| a.to_i}.select{|elem| elem.even?}
+	spl = params[:splat][0].split("/").map{|a| a.to_i}.select{|elem| elem.even?}.size
 	"presenta la cantidad de numeros pares => #{spl}"
 end
 
