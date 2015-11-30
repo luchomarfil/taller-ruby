@@ -27,13 +27,13 @@ get '/mcd/:a/:b' do |a, b|
 end
 
 get '/sum/*' do
-	spl = params[:splat].split("/").map{|a| a.to_i}.inject(:+)
-	"calcula la sumatoria de todos los valores #{spl}"
+	spl = params[:splat][0].split("/").map{|a| a.to_i}.inject(:+)
+	"calcula la sumatoria de todos los valores => #{spl}"
 end
 
 get '/even/*' do
-	spl = params[:splat]
-	"presenta la cantidad de numeros pares #{spl}"
+	spl = params[:splat][0].split("/").map{|a| a.to_i}.select{|elem| elem.even?}
+	"presenta la cantidad de numeros pares => #{spl}"
 end
 
 post '/random' do
